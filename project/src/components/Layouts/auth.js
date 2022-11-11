@@ -1,4 +1,4 @@
-import { ImageBackground, StatusBar, StyleSheet, Text, View } from 'react-native'
+import { ImageBackground, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import styles from './styles';
 import { COLORS, SIZES } from '../../theme';
@@ -16,6 +16,7 @@ const CustWILog = true ? "90%" : SIZES.width >= 1200 ? "30%" : "60%";
   return (
     <View style={styles.container}>
     <StatusBar backgroundColor={COLORS.primary} barStyle="light-content" />
+    <ScrollView>
 
     <ImageBackground
       source={Bacimage}
@@ -35,6 +36,7 @@ const CustWILog = true ? "90%" : SIZES.width >= 1200 ? "30%" : "60%";
           <FormLogin />
       </View>
     </ImageBackground>
+        </ScrollView>
   </View>
   )
 }

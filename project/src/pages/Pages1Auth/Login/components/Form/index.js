@@ -7,6 +7,7 @@ import CheckBox from 'react-native-check-box';
 // import ButtonLogin from '../Button';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as Animatable from 'react-native-animatable';
+import { PrimaryButton } from '../../../../../components/Buttons';
 
 const FormLogin = () => {
   const {
@@ -103,12 +104,12 @@ const FormLogin = () => {
                 />
                 <Text style={styles.labelText}>Se souvenir de moi?</Text>
               </View>
-              {/* <View style={styles.containerButtons}>
-                <ButtonLogin
-                  handleSubmit={handleSubmit}
+              <View style={styles.containerButtons}>
+                <PrimaryButton
+                  onPress={handleSubmit}
                   isSubmitting={isSubmitting}
-                />
-              </View> */}
+                >Connexion</PrimaryButton>
+              </View>
 
               <View style={styles.Identifiants}>
                 <View style={styles.leftLink}>
