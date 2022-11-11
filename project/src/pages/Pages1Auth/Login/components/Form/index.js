@@ -4,7 +4,7 @@ import {Field, Form, Formik} from 'formik';
 import {UseLogin} from '../../Hooks/UseLogin';
 import styles from './styles';
 import CheckBox from 'react-native-check-box';
-import ButtonLogin from '../Button';
+// import ButtonLogin from '../Button';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as Animatable from 'react-native-animatable';
 
@@ -103,12 +103,12 @@ const FormLogin = () => {
                 />
                 <Text style={styles.labelText}>Se souvenir de moi?</Text>
               </View>
-              <View style={styles.containerButtons}>
+              {/* <View style={styles.containerButtons}>
                 <ButtonLogin
                   handleSubmit={handleSubmit}
                   isSubmitting={isSubmitting}
                 />
-              </View>
+              </View> */}
 
               <View style={styles.Identifiants}>
                 <View style={styles.leftLink}>

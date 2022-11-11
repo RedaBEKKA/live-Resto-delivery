@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { ImageBackground, StatusBar, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import styles from './styles';
 
@@ -30,5 +30,3 @@ const AuthLayout = () => {
 }
 
 export default AuthLayout
-
-const styles = StyleSheet.create({})
