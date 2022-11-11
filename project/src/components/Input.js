@@ -15,7 +15,7 @@ const Input = ({
   const [hidePassword, setHidePassword] = React.useState(password);
   const [isFocused, setIsFocused] = React.useState(false);
   return (
-    <View style={{marginBottom: 20}}>
+    <View style={{ }}>
       <Text style={style.label}>{label}</Text>
       <View
         style={[
@@ -66,14 +66,14 @@ const style = StyleSheet.create({
   label: {
     marginVertical: 5,
     fontSize: 14,
-    color: COLORS.green1
+    color: COLORS.white,
+    fontFamily:'Roboto-Bold'
   },
   inputContainer: {
     height: 55,
-    backgroundColor: COLORS.green1,
+    backgroundColor: '#ffffff70',
     flexDirection: 'row',
     paddingHorizontal: 15,
-    borderWidth: 1,
     borderRadius:5
   },
 });

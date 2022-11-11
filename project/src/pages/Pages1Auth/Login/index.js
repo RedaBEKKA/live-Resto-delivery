@@ -6,7 +6,7 @@ import FormLogin from './components/Form'
 const Login = () => {
   return (
     <AuthLayout>
-      <FormLogin/>
+      {/* <FormLogin/> */}
     </AuthLayout>
   )
 }

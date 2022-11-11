@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import { COLORS } from '../../../../../theme';
 
 const styles = StyleSheet.create({
   containerForm: {
@@ -6,18 +7,16 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   Input: {
-    backgroundColor: '#ffffff70',
-    color: '#aac840',
-    margin: 3,
-    borderRadius: 6,
-    paddingLeft: 10,
-    width: '100%',
+    color: COLORS.Noir,
+    fontSize: 16,
+    fontFamily: "Roboto-Bold",
+    flex: 1,
+    paddingLeft: 2,
   },
   label: {
     fontSize: 17,
     color: '#fff',
     fontWeight: '700',
-    marginTop: 15,
   },
   left: {
     flexDirection: 'row',
