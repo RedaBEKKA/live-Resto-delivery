@@ -10,7 +10,6 @@ import { Txt } from "../utils";
 import { LinearGradient } from "expo-linear-gradient";
 
 import { COLORS } from "../../theme";
-// import newButton from "../../Assets/Img/newButton.png";
 import { View } from "react-native";
 
 export const PrimaryButton = ({
@@ -58,8 +57,8 @@ export const PrimaryButton = ({
         end={{ x: 0, y: 1 }}
         colors={
           condition
-            ? [COLORS.green1, COLORS.green2]
-            : [COLORS.green1, COLORS.green2]
+            ? [COLORS.green2, COLORS.green1]
+            : [COLORS.green1, COLORS.green1]
         }
         style={styles.BoxGradient}
       >
@@ -135,6 +134,82 @@ export const ButtonRectangle195 = ({
           {children}
         </Txt>
       )}
+    </TouchableOpacity>
+  );
+};
+
+
+export const SelectButton = ({
+  children,
+  style,
+  onPress,
+  width,
+  icon,
+  opacity,
+  Bold,
+  loading,
+  condition,
+  marginVertical,
+  textTransform,
+}) => {
+  const hoverRef = useRef(null);
+
+  const stylep = [
+    {
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 10,
+        height: 1,
+      },
+      shadowOpacity: 0.22,
+      shadowRadius: 2.22,
+      elevation: 3,
+    },
+  ];
+  return (
+    <TouchableOpacity
+      ref={hoverRef}
+      onPress={onPress}
+      style={[
+        {
+          width: width || "100%",
+          marginVertical: marginVertical ? marginVertical : 20,
+        },
+
+        { ...style },
+      ]}
+    >
+      <LinearGradient
+        start={{ x: 1, y: 0 }}
+        end={{ x: 0, y: 1 }}
+        colors={
+          condition
+            ? [COLORS.green2, COLORS.green1]
+            : [COLORS.green1, COLORS.green1]
+        }
+        style={styles.BoxGradient}
+      >
+        {loading ? (
+          <ActivityIndicator color={COLORS.white}></ActivityIndicator>
+        ) : (
+
+          <View style={{flexDirection:"row" , alignItems:'center' , justifyContent:"space-around" , width:"100%"}}>
+
+          <Txt
+            numberOfLines={1}
+            color={condition ? COLORS.yellow : COLORS.white}
+            opacity={opacity}
+            Bold={Bold}
+            style={[styles.text]}
+            textTransform={textTransform ? textTransform : "uppercase"}
+          >
+            {children}
+          </Txt>
+
+          <Image source={icon} />
+          </View>
+        )}
+      </LinearGradient>
     </TouchableOpacity>
   );
 };

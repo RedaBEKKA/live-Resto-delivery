@@ -61,25 +61,25 @@ const List = [
   },
 ];
 
-const ListMessages = () => {
+const ListMessages = ({navigation}) => {
   return (
 
         List.map((item) => {
-          return <ItemsRender key={item.id} item={item} />;
+          return <ItemsRender key={item.id} item={item} navigation={navigation} />;
         })
   );
 };
 
 export default ListMessages;
 
-const ItemsRender = ({ item }) => {
+const ItemsRender = ({ item ,navigation}) => {
   let sender = item.sender;
 
   if (sender) {
-    return <RenderSendMessage item={item} />;
+    return <RenderSendMessage item={item} navigation={navigation} />;
   }
   if (!sender) {
-    return !sender && <RenderResMessage item={item} />;
+    return !sender && <RenderResMessage item={item} navigation={navigation}  />;
   }
 
   return null;

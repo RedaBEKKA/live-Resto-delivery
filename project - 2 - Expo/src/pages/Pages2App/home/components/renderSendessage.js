@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import back from "../../../../Assets/img/c1.png";
 import checkMesg from "../../../../Assets/img/checkMesg.png";
@@ -16,10 +16,12 @@ import eys2 from "../../../../Assets/img/eys2.png";
 import { ButtonRectangle195 } from "../../../../components/Buttons";
 import Space from "../../../../components/Space";
 
-const RenderResMessage = () => {
+const RenderResMessage = ({navigation}) => {
   return (
     <Cover>
-      <View style={{ flex: 1 }}>
+      <TouchableOpacity style={{ flex: 1 }} onPress={()=>{
+        navigation.navigate('Details')
+      }}>
         <View
           style={{
             flexDirection: "row",
@@ -106,7 +108,7 @@ const RenderResMessage = () => {
         </View>
 
         <Image source={back} />
-      </View>
+      </TouchableOpacity>
     </Cover>
   );
 };

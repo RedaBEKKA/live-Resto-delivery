@@ -20,7 +20,7 @@ export const Txt = ({
       numberOfLines={numberOfLines}
       onTextLayout={onTextLayout}
       style={{
-        fontSize: fontSize || 16,
+        fontSize: fontSize || 14,
         fontFamily: fontFamily || "Helvetica",
         color: color || COLORS.Vert1,
         fontWeight: Bold || "400",

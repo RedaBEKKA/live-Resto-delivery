@@ -5,7 +5,7 @@ import { COLORS, SIZES } from "../../../theme";
 import ListMessages from "./components/ListMessages";
 import { ScrollView } from "react-native-gesture-handler";
 
-const Home = () => {
+const Home = ({navigation}) => {
   return (
     <View style={{ flex: 1, backgroundColor: COLORS.white }}>
       <HerderHome />
@@ -17,7 +17,7 @@ const Home = () => {
         }}
       >
         <ScrollView showsVerticalScrollIndicator={false}  >
-          <ListMessages />
+          <ListMessages navigation={navigation} />
         </ScrollView>
 
         

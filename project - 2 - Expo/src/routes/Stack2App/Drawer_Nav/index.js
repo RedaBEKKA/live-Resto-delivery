@@ -3,6 +3,7 @@ import { DrawerContent } from "./CustomDrawer";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
  import Home from "../../../pages/Pages2App/home"
+import Details from "../../../pages/Pages2App/details";
 
 const Drawer = createDrawerNavigator();
 const DrawerScreen = (props) => {
@@ -19,7 +20,8 @@ const DrawerScreen = (props) => {
     
       {/* <Drawer.Screen name="DiaspoBottomTab" component={BottomTabOrange} /> */}
       <Drawer.Screen name="Home" component={Home} {...props} />
-  
+      <Drawer.Screen name="Details" component={Details} {...props} />
+      
       
     </Drawer.Navigator>
   );

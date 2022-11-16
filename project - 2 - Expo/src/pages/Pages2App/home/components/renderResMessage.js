@@ -1,4 +1,4 @@
-import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
+import { Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import back from "../../../../Assets/img/c2.png";
 import checkMesg from "../../../../Assets/img/checkSend.png";
@@ -9,10 +9,12 @@ import { Txt } from "../../../../components/utils";
 import Iconer from "../../../../components/Iconer";
 import { ButtonRectangle195 } from "../../../../components/Buttons";
 
-const RenderSendMessage = () => {
+const RenderSendMessage = ({navigation}) => {
   return (
     <Cover>
-      <View style={{ flex: 1 }}>
+      <TouchableOpacity style={{ flex: 1 }}  onPress={()=>{
+        navigation.navigate('Details')
+      }}>
         <View
           style={{
             flexDirection: "row",
@@ -55,7 +57,7 @@ const RenderSendMessage = () => {
         </View>
 
         <Image source={back} style={{ height: 204 }} resizeMode="contain" />
-      </View>
+      </TouchableOpacity>
     </Cover>
   );
 };
