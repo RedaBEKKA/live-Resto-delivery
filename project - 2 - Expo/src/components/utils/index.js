@@ -21,7 +21,7 @@ export const Txt = ({
       onTextLayout={onTextLayout}
       style={{
         fontSize: fontSize || 16,
-        fontFamily: fontFamily || "RobotoMedium",
+        fontFamily: fontFamily || "Helvetica",
         color: color || COLORS.Vert1,
         fontWeight: Bold || "400",
         opacity: opacity || 1,
@@ -53,7 +53,7 @@ export const Head = ({
       onTextLayout={onTextLayout}
       style={{
         fontSize: fontSize || 18,
-        fontFamily: fontFamily || "PoppinsSemiBold",
+        fontFamily: fontFamily || "Helvetica",
         color: color || COLORS.blueGreen,
         fontWeight: Bold || "400",
         opacity: opacity || 1,
@@ -84,7 +84,7 @@ export const SmTxt = ({
       onTextLayout={onTextLayout}
       style={{
         fontSize: fontSize || 14,
-        fontFamily: fontFamily || "Poppins-Medium",
+        fontFamily: fontFamily || "Helvetica",
         color: color || COLORS.Vert1,
         fontWeight: Bold || "400",
         opacity: opacity || 1,

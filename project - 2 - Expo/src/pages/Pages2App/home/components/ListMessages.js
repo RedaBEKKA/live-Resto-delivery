@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import RenderSendMessage from "./renderSendMessage";
 import RenderResMessage from "./renderResMessage";
+import RenderSendMessage from "./renderSendessage";
 
 const ListMessages = () => {
   return (
-    <View>
+    <View style={{flex:1}}>
       <RenderSendMessage />
       <RenderResMessage />
     </View>

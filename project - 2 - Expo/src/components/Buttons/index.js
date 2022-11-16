@@ -7,7 +7,7 @@ import {
 import React, { useRef } from "react";
 import { Txt } from "../utils";
 // import LinearGradient from "react-native-linear-gradient";
-import {LinearGradient} from 'expo-linear-gradient';
+import { LinearGradient } from "expo-linear-gradient";
 
 import { COLORS } from "../../theme";
 // import newButton from "../../Assets/Img/newButton.png";
@@ -72,7 +72,7 @@ export const PrimaryButton = ({
             opacity={opacity}
             Bold={Bold}
             style={[styles.text]}
-            textTransform={textTransform ? textTransform: "uppercase"}
+            textTransform={textTransform ? textTransform : "uppercase"}
           >
             {children}
           </Txt>
@@ -82,9 +82,62 @@ export const PrimaryButton = ({
   );
 };
 
+export const ButtonRectangle195 = ({
+  children,
+  style,
+  onPress,
+  width,
+  opacity,
+  Bold,
+  loading,
+  textTransform,
+  textColor,
+  fontSize,
+  icon,
+}) => {
+  const hoverRef = useRef(null);
+
+  return (
+    <TouchableOpacity
+      ref={hoverRef}
+      onPress={onPress}
+      style={[
+        {
+          width: width || "100%",
+          backgroundColor: "#FFF",
+          borderRadius: 20,
+          alignItems: "center",
+          paddingVertical: 5,
+          flexDirection:"row",
+          justifyContent:'space-between',
+          paddingHorizontal:10
+        },
+
+        { ...style },
+      ]}
+    >
+      <Image source={icon} style={{marginRight:10}} />
+
+      {loading ? (
+        <ActivityIndicator color={textColor}></ActivityIndicator>
+      ) : (
+        <Txt
+          numberOfLines={1}
+          color={textColor}
+          opacity={opacity}
+          Bold={Bold}
+          style={[styles.text]}
+          textTransform={textTransform ? textTransform : "uppercase"}
+          fontSize={fontSize ? fontSize : 14}
+        >
+          {children}
+        </Txt>
+      )}
+    </TouchableOpacity>
+  );
+};
 
 const styles = StyleSheet.create({
-
   BoxGradient: {
     width: "100%",
     height: 51,
@@ -93,10 +146,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 4,
   },
- 
+
   text: {
     fontSize: 17,
-    letterSpacing:15
+    letterSpacing: 15,
   },
   PaleGreyButton: {
     height: 51,
@@ -105,5 +158,4 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: COLORS.paleGrey,
   },
-
 });

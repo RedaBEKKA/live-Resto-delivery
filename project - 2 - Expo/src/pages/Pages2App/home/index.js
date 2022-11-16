@@ -7,9 +7,9 @@ import ListMessages from './components/ListMessages'
 
 const Home = () => {
   return (
-    <View style={{flex:1 , backgroundColor:COLORS.grayLight,}}>
+    <View style={{flex:1 , backgroundColor:COLORS.white,}}>
       <HerderHome/>
-      <View style={{flex:1 , backgroundColor:'#8ee8', margin:10 , borderRadius:8 , padding:3}}>
+      <View style={{flex:1 ,   margin:10 , borderRadius:8 , padding:3}}>
 
       <ListMessages />
       </View>

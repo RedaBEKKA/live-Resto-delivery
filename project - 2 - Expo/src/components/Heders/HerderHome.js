@@ -12,10 +12,11 @@ import user from "../../Assets/img/user.png";
 
 import VectorStroke from "../../Assets/img/VectorStroke.png";
 import HView from "../HView/HView";
+import { COLORS } from "../../theme";
 const HerderHome = () => {
   return (
     <View
-      style={{ height: 70, paddingHorizontal: 20, justifyContent: "center" }}
+      style={{ height: 70, paddingHorizontal: 20, justifyContent: "center", backgroundColor:COLORS.grayLight }}
     >
       <HView spaceBetween style={{ alignItems: "center" }}>
         <Image source={hederLogo} style={{ width: 52, height: 52 }} />

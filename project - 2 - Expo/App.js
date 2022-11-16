@@ -27,6 +27,7 @@ export default function App({ navigation }) {
     RobotoMedium:require("./assets/fonts/Roboto-Medium.ttf"),
     PoppinsSemiBold:require("./assets/fonts/Poppins-SemiBold.ttf"),
     HelveticaBold:require("./assets/fonts/Helvetica-Bold.ttf"),
+    Helvetica:require("./assets/fonts/Helvetica.ttf")
   });
 
   useEffect(() => {
