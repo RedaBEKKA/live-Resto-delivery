@@ -94,6 +94,7 @@ export const ButtonRectangle195 = ({
   textColor,
   fontSize,
   icon,
+  right
 }) => {
   const hoverRef = useRef(null);
 
@@ -103,20 +104,21 @@ export const ButtonRectangle195 = ({
       onPress={onPress}
       style={[
         {
-          width: width || "100%",
+          width: width || "auto",
           backgroundColor: "#FFF",
           borderRadius: 20,
           alignItems: "center",
           paddingVertical: 5,
           flexDirection:"row",
           justifyContent:'space-between',
-          paddingHorizontal:10
+          paddingHorizontal:10,
+          marginRight :right ? right :0
         },
 
         { ...style },
       ]}
     >
-      <Image source={icon} style={{marginRight:10}} />
+      <Image source={icon} style={{marginRight:4}} />
 
       {loading ? (
         <ActivityIndicator color={textColor}></ActivityIndicator>

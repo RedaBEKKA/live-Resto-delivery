@@ -45,8 +45,8 @@ const RenderSendMessage = () => {
               <ButtonRectangle195
                 textColor={COLORS.bleu}
                 icon={check}
-                width={"45%"}
                 fontSize={12}
+                textTransform={"none"}
               >
                 Finaliser
               </ButtonRectangle195>
@@ -70,6 +70,7 @@ const Cover = ({ children }) => {
         alignItems: "baseline",
         paddingVertical: 8,
         overflow: "hidden",
+        height:220,
       }}
     >
       {children}

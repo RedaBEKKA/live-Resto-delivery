@@ -1,22 +1,31 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import HerderHome from '../../../components/Heders/HerderHome'
-import { COLORS } from '../../../theme'
-import ListMessages from './components/ListMessages'
-
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import HerderHome from "../../../components/Heders/HerderHome";
+import { COLORS, SIZES } from "../../../theme";
+import ListMessages from "./components/ListMessages";
+import { ScrollView } from "react-native-gesture-handler";
 
 const Home = () => {
   return (
-    <View style={{flex:1 , backgroundColor:COLORS.white,}}>
-      <HerderHome/>
-      <View style={{flex:1 ,   margin:10 , borderRadius:8 , padding:3}}>
+    <View style={{ flex: 1, backgroundColor: COLORS.white }}>
+      <HerderHome />
+      <View
+        style={{
+          margin: 10,
+          borderRadius: 8,
+          flex: 1,
+        }}
+      >
+        <ScrollView showsVerticalScrollIndicator={false}  >
+          <ListMessages />
+        </ScrollView>
 
-      <ListMessages />
+        
       </View>
     </View>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
