@@ -2,6 +2,7 @@ import {
   Image,
   StyleSheet,
   Text,
+  Touchable,
   TouchableHighlight,
   TouchableOpacity,
   View,
@@ -12,7 +13,7 @@ import user from "../../Assets/img/user.png";
 
 import VectorStroke from "../../Assets/img/VectorStroke.png";
 import HView from "../HView/HView";
-import { COLORS } from "../../theme";
+import { COLORS, SIZES } from "../../theme";
 import { Txt } from "../utils";
 import Animated, {
   useAnimatedStyle,
@@ -75,6 +76,22 @@ const HeaderHome = ({ navigation }) => {
       <Animated.View style={[styles.container, rStyle]}>
         <Elements navigation={navigation} close={close} />
       </Animated.View>
+      {isVisible && (
+        <TouchableOpacity
+          onPress={() => setIsVisible(!isVisible)}
+          style={{
+            flex: 1,
+            backgroundColor: "#fff9",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            bottom: 0,
+            right: 0,
+            height: SIZES.height,
+            width: SIZES.width,
+          }}
+        ></TouchableOpacity>
+      )}
     </View>
   );
 };

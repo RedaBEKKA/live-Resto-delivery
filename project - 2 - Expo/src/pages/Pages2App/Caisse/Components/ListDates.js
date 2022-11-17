@@ -33,7 +33,17 @@ const ListDates = () => {
     <View style={styles.container}>
       <ScrollView horizontal>
         {ListData.map((item, index) => {
-          return <RenderItems item={item} index={index} Selected={Selected} onPress={onPress} />;
+          return (
+            <View key={index.toString()}>
+              <RenderItems
+                item={item}
+                index={index}
+                Selected={Selected}
+                onPress={onPress}
+              />
+              
+            </View>
+          );
         })}
       </ScrollView>
     </View>

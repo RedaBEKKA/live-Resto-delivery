@@ -1,4 +1,11 @@
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React, { useRef, useState } from "react";
 import { Txt } from "../../../components/utils";
 import { COLORS } from "../../../theme";
@@ -15,7 +22,12 @@ import calender from "../../../Assets/img/calendar.png";
 import Form from "./Components/Form";
 import HeaderHome from "../../../components/Heders/HeaderHome";
 import AppLayout from "../../../components/Layouts/AppLayout";
-import Animated, { useAnimatedStyle, withTiming , Transition , Transitioning } from "react-native-reanimated";
+import Animated, {
+  useAnimatedStyle,
+  withTiming,
+  Transition,
+  Transitioning,
+} from "react-native-reanimated";
 
 const listTexts = [
   {
@@ -40,34 +52,49 @@ const listTexts = [
   },
 ];
 
-
 const ItemList = [
   {
-    nom: "Mon Profile ",
-    icon: require("../../../Assets/img/selectdropDown/G1.png"),
-    route: "Profile",
+    nom: "Produits",
+    Qt: "Qt",
+    Pu: "P.U",
+    isHeader: true,
   },
   {
-    nom: "Mon historique de commande",
-    icon: require("../../../Assets/img/selectdropDown/G2.png"),
-    route: "Historique",
+    nom: "Produits",
+    Qt: "1",
+    Pu: "21€",
+    isHeader: false,
   },
   {
-    nom: "Ma caisse",
-    icon: require("../../../Assets/img/selectdropDown/G3.png"),
-    route: "Caisse",
+    nom: null,
+    Qt: "2",
+    Pu: "26€",
+    isHeader: false,
+  },
+
+  {
+    nom: null,
+    frais: "Frais de livraison",
+    Pu: "6,90€",
+    Qt: null,
+    isHeader: false,
+  },
+  {
+    nom: null,
+    Qt: "TOTAL",
+    Pu: "78,99€",
+    isHeader: true,
   },
 ];
 
 const Details = ({ navigation }) => {
-
   const transition = (
     <Transition.Together>
-      <Transition.In type="fade"  ></Transition.In>
-      <Transition.Change/>
-      <Transition.Out type="fade"  ></Transition.Out>
+      <Transition.In type="fade"></Transition.In>
+      <Transition.Change />
+      <Transition.Out type="fade"></Transition.Out>
     </Transition.Together>
-  )
+  );
 
   const [isVisible, setIsVisible] = useState(false);
 
@@ -76,18 +103,15 @@ const Details = ({ navigation }) => {
   };
   const rStyle = useAnimatedStyle(() => ({
     opacity: isVisible ? withTiming(1) : withTiming(0),
-
- 
   }));
 
-  const ref = useRef()
+  const ref = useRef();
 
   return (
     <AppLayout navigation={navigation}>
       <Transitioning.View
-      ref={ref}
-
-      transition={transition}
+        ref={ref}
+        transition={transition}
         style={{
           borderRadius: 8,
           flex: 1,
@@ -121,28 +145,34 @@ const Details = ({ navigation }) => {
 
             {listTexts.map((item, index) => {
               return (
+                <View   key={index.toString()}>
+
                 <TextRenders
-                  key={index.toString()}
+               
                   title={item.title}
                   item={item.item}
                 />
+                </View>
               );
             })}
 
             <Space space={20} />
             <Txt Bold={"700"}>Restaurant : La Lune de Béjaïa</Txt>
             <Space />
-            <SelectButton icon={Select} 
-            
-              onPress={()=>{
-                ref.current.animateNextTransition()
-                setIsVisible(!isVisible)
+            <SelectButton
+              icon={Select}
+              onPress={() => {
+                ref.current.animateNextTransition();
+                setIsVisible(!isVisible);
               }}
-            >Contenu de la commande</SelectButton>
-{isVisible &&
-            (<Animated.View style={[styles.container2, rStyle]}>
-              <Elements navigation={navigation} close={close} />
-            </Animated.View>)}
+            >
+              Contenu de la commande
+            </SelectButton>
+            {isVisible && (
+              <Animated.View style={[styles.container2, rStyle]}>
+                <Elements navigation={navigation} close={close} />
+              </Animated.View>
+            )}
 
             <Line color={COLORS.grayLight} />
             <Space space={20} />
@@ -168,13 +198,12 @@ const Details = ({ navigation }) => {
 
 export default Details;
 
-
 const Elements = ({ navigation, close }) => {
   return (
     <View>
       {ItemList.map((item, index) => {
         return (
-          <TouchableOpacity
+          <View
             key={index}
             style={styles.Items}
             onPress={() => {
@@ -182,16 +211,29 @@ const Elements = ({ navigation, close }) => {
               close();
             }}
           >
-            <Image source={item.icon} style={{ marginRight: 10 }} />
-            <Txt>{item.nom}</Txt>
-          </TouchableOpacity>
+            <View
+              style={{
+                flexDirection: "row",
+                width: "80%",
+              }}
+            >
+              <View style={{width:item.frais ? '50%' : '20%'}}>
+                <Txt Bold={item.isHeader ? "700" : "400"}>{item.frais ?item.frais : item.Qt}</Txt>
+              </View>
+              <View style={{}}>
+                <Txt Bold={item.isHeader ? "700" : "400"}>{item.nom}</Txt>
+              </View>
+            </View>
+
+            <View style={{}}>
+              <Txt Bold={item.isHeader ? "700" : "400"}>{item.Pu}</Txt>
+            </View>
+          </View>
         );
       })}
     </View>
   );
 };
-
-
 
 const TextRenders = ({ title, item }) => {
   return (
@@ -202,19 +244,6 @@ const TextRenders = ({ title, item }) => {
   );
 };
 
-// const Line = () =>{
-//   return(
-//     <View style={{
-//       height:1,
-//       backgroundColor:"#CCC" ,
-//       width:"100%",
-//       marginTop:10
-//     }}>
-
-//     </View>
-//   )
-// }
-
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 20,
@@ -223,14 +252,15 @@ const styles = StyleSheet.create({
     width: "80%",
     lineHeight: 17,
   },
-  Items: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 15,
-  },
   container2: {
     zIndex: 1000,
     borderRadius: 5,
-    paddingHorizontal: 20,
+    paddingHorizontal: 15,
+  },
+  Items: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 8,
+    justifyContent:'space-between'
   },
 });

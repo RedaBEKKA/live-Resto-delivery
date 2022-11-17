@@ -35,9 +35,9 @@ const Profile = ({ navigation }) => {
         </View>
       <Space />
       <View style={styles.Box}>
-        {ListdData.map((item) => {
+        {ListdData.map((item,index) => {
           return (
-            <View style={styles.item}>
+            <View style={styles.item} key={index}>
               <Txt>{item.nom} </Txt>
               <Image source={item.icon} />
             </View>
