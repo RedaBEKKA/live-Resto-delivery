@@ -46,7 +46,7 @@ export const PrimaryButton = ({
       style={[
         {
           width: width || "100%",
-          marginVertical: marginVertical ? marginVertical : 20,
+          marginVertical: marginVertical ? marginVertical : 0,
         },
 
         { ...style },

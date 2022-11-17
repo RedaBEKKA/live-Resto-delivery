@@ -12,6 +12,7 @@ export const COLORS = {
   grayLight:'#E5E5E7',
   green3:'#35DF0B',
   green30: "#AAC84030",
+  grayText:'#C4C4C4'
 
 };
 export const SIZES = {

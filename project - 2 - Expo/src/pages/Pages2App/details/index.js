@@ -14,6 +14,7 @@ import Line from "../../../components/Line";
 import calender from "../../../Assets/img/calendar.png";
 import Form from "./Components/Form";
 import HeaderHome from "../../../components/Heders/HeaderHome";
+import AppLayout from "../../../components/Layouts/AppLayout";
 
 const listTexts = [
   {
@@ -40,12 +41,12 @@ const listTexts = [
 
 const Details = ({navigation}) => {
   return (
-    <View style={{ flex: 1, backgroundColor: COLORS.white }}>
-      <HeaderHome />
+    <AppLayout navigation={navigation}>
       <View
         style={{
           borderRadius: 8,
           flex: 1,
+          zIndex:-1
         }}
       >
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -105,7 +106,7 @@ const Details = ({navigation}) => {
           </View>
         </ScrollView>
       </View>
-    </View>
+    </AppLayout>
   );
 };
 
