@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "fonts",
-    "slug": "fonts",
+    "name": "LiveRestoDelivery",
+    "slug": "LiveRestoDelivery",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,14 +25,14 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.zineddine.fonts"
+      "package": "com.zineddine.LiveRestoDelivery"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "af32e354-cb14-4412-8151-6524f1331448"
+        "projectId": "ac53eceb-b42b-4a10-8bc7-d6f1d382d916"
       }
     }
   }

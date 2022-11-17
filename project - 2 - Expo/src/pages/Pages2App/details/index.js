@@ -66,7 +66,7 @@ const ItemList = [
     isHeader: false,
   },
   {
-    nom: null,
+    nom: "Produits",
     Qt: "2",
     Pu: "26€",
     isHeader: false,
