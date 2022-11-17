@@ -6,6 +6,7 @@ import updatePhoto from "../../../Assets/img/Profile/updatePhoto.png";
 import { Txt } from "../../../components/utils";
 import Space from "../../../components/Space";
 import { COLORS } from "../../../theme";
+import AppLayout from "../../../components/Layouts/AppLayout";
 
 const ListdData = [
   {
@@ -23,14 +24,12 @@ const ListdData = [
 ];
 const Profile = ({ navigation }) => {
   return (
-    <View style={styles.container}>
-      <HeaderHome navigation={navigation} />
+    <AppLayout navigation={navigation}>
       <View style={styles.Profile}>
         <Image source={profile} style={{}} />
       </View>
         <View style={styles.updatePhoto}>
         <TouchableOpacity>
-
           <Image source={updatePhoto} style={{top:-17}} />
         </TouchableOpacity>
         </View>
@@ -45,7 +44,8 @@ const Profile = ({ navigation }) => {
           );
         })}
       </View>
-    </View>
+      <Space space={40} />
+    </AppLayout>
   );
 };
 

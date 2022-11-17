@@ -1,11 +1,18 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import AppLayout from '../../../components/Layouts/AppLayout'
+import { Txt } from '../../../components/utils'
+import Space from '../../../components/Space'
+import HistoriqueList from './components/HistoriqueList'
 
-const Historique = () => {
+const Historique = ({navigation}) => {
   return (
-    <View>
-      <Text>Historique</Text>
-    </View>
+    <AppLayout navigation={navigation}>
+    <Space space={20} />
+      <Txt fontSize={24} Bold='700' style={{textAlign:'center'}}>Historique de commandes</Txt>
+    <HistoriqueList />
+    <Space space={50} />
+    </AppLayout>
   )
 }
 

@@ -10,7 +10,8 @@ export const COLORS = {
   red: "#FF0000",
   white70:'#ffffff70',
   grayLight:'#E5E5E7',
-  green3:'#35DF0B'
+  green3:'#35DF0B',
+  green30: "#AAC84030",
 
 };
 export const SIZES = {
