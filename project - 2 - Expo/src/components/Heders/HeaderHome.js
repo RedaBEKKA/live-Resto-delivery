@@ -14,7 +14,10 @@ import VectorStroke from "../../Assets/img/VectorStroke.png";
 import HView from "../HView/HView";
 import { COLORS } from "../../theme";
 import { Txt } from "../utils";
-import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated";
+import Animated, {
+  useAnimatedStyle,
+  withTiming,
+} from "react-native-reanimated";
 
 const ItemList = [
   {
@@ -33,18 +36,15 @@ const ItemList = [
     route: "Caisse",
   },
 ];
-const HeaderHome = ({navigation}) => {
+const HeaderHome = ({ navigation }) => {
+  const [isVisible, setIsVisible] = useState(false);
 
-  const [isVisible, setIsVisible] = useState(false)
-
-const close=()=>{
-  setIsVisible(false)
-}
-  const rStyle = useAnimatedStyle(()=>({
-    bottom : isVisible ? 
-    withTiming(-130,1000)
-    : withTiming( 240,1000)
-  }))
+  const close = () => {
+    setIsVisible(false);
+  };
+  const rStyle = useAnimatedStyle(() => ({
+    bottom: isVisible ? withTiming(-130, 1000) : withTiming(240, 1000),
+  }));
   return (
     <View
       style={{
@@ -55,9 +55,16 @@ const close=()=>{
       }}
     >
       <HView spaceBetween style={{ alignItems: "center" }}>
-        <Image source={hederLogo} style={{ width: 52, height: 52 }} />
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Home");
+            close();
+          }}
+        >
+          <Image source={hederLogo} style={{ width: 52, height: 52 }} />
+        </TouchableOpacity>
 
-        <TouchableOpacity onPress={()=>setIsVisible(!isVisible)}>
+        <TouchableOpacity onPress={() => setIsVisible(!isVisible)}>
           <HView>
             <Image source={user} style={{ marginHorizontal: 10 }} />
             <Image source={VectorStroke} />
@@ -65,9 +72,7 @@ const close=()=>{
         </TouchableOpacity>
       </HView>
 
-      <Animated.View
-        style={[styles.container,rStyle]}
-      >
+      <Animated.View style={[styles.container, rStyle]}>
         <Elements navigation={navigation} close={close} />
       </Animated.View>
     </View>
@@ -76,17 +81,21 @@ const close=()=>{
 
 export default HeaderHome;
 
-const Elements = ({navigation,close}) => {
+const Elements = ({ navigation, close }) => {
   return (
     <View>
-      {ItemList.map((item,index,) => {
+      {ItemList.map((item, index) => {
         return (
-          <TouchableOpacity key={index} style={styles.Items} onPress={()=>{
-            navigation.navigate(item.route)
-            close()
-          }}>
-            <Image source={item.icon} style={{marginRight:10}} />
-            <Txt>{item.nom}</Txt> 
+          <TouchableOpacity
+            key={index}
+            style={styles.Items}
+            onPress={() => {
+              navigation.navigate(item.route);
+              close();
+            }}
+          >
+            <Image source={item.icon} style={{ marginRight: 10 }} />
+            <Txt>{item.nom}</Txt>
           </TouchableOpacity>
         );
       })}
@@ -95,13 +104,12 @@ const Elements = ({navigation,close}) => {
 };
 
 const styles = StyleSheet.create({
-  Items:{
-    flexDirection:'row' , 
-    alignItems:"center",
-    marginBottom:15
-
+  Items: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 15,
   },
-  container:{
+  container: {
     position: "absolute",
     right: 10,
     bottom: -135,
@@ -111,6 +119,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     elevation: 3,
     padding: 20,
-    height:140
-  }
+    height: 140,
+  },
 });

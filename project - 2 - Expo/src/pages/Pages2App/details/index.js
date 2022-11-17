@@ -1,5 +1,5 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useRef, useState } from "react";
 import { Txt } from "../../../components/utils";
 import { COLORS } from "../../../theme";
 import HeaderDetails from "../../../components/Heders/headerDetails";
@@ -15,6 +15,7 @@ import calender from "../../../Assets/img/calendar.png";
 import Form from "./Components/Form";
 import HeaderHome from "../../../components/Heders/HeaderHome";
 import AppLayout from "../../../components/Layouts/AppLayout";
+import Animated, { useAnimatedStyle, withTiming , Transition , Transitioning } from "react-native-reanimated";
 
 const listTexts = [
   {
@@ -39,20 +40,66 @@ const listTexts = [
   },
 ];
 
-const Details = ({navigation}) => {
+
+const ItemList = [
+  {
+    nom: "Mon Profile ",
+    icon: require("../../../Assets/img/selectdropDown/G1.png"),
+    route: "Profile",
+  },
+  {
+    nom: "Mon historique de commande",
+    icon: require("../../../Assets/img/selectdropDown/G2.png"),
+    route: "Historique",
+  },
+  {
+    nom: "Ma caisse",
+    icon: require("../../../Assets/img/selectdropDown/G3.png"),
+    route: "Caisse",
+  },
+];
+
+const Details = ({ navigation }) => {
+
+  const transition = (
+    <Transition.Together>
+      <Transition.In type="fade"  ></Transition.In>
+      <Transition.Change/>
+      <Transition.Out type="fade"  ></Transition.Out>
+    </Transition.Together>
+  )
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  const close = () => {
+    setIsVisible(false);
+  };
+  const rStyle = useAnimatedStyle(() => ({
+    opacity: isVisible ? withTiming(1) : withTiming(0),
+
+ 
+  }));
+
+  const ref = useRef()
+
   return (
     <AppLayout navigation={navigation}>
-      <View
+      <Transitioning.View
+      ref={ref}
+
+      transition={transition}
         style={{
           borderRadius: 8,
           flex: 1,
-          zIndex:-1
+          zIndex: -1,
         }}
       >
         <ScrollView showsVerticalScrollIndicator={false}>
-          <ReturnToHome onPress={()=>{
-            navigation.goBack()
-          }}  />
+          <ReturnToHome
+            onPress={() => {
+              navigation.goBack();
+            }}
+          />
           <Space space={10} />
           <View style={styles.container}>
             <Txt fontSize={24}>#56226</Txt>
@@ -85,7 +132,17 @@ const Details = ({navigation}) => {
             <Space space={20} />
             <Txt Bold={"700"}>Restaurant : La Lune de Béjaïa</Txt>
             <Space />
-            <SelectButton icon={Select}>Contenu de la commande</SelectButton>
+            <SelectButton icon={Select} 
+            
+              onPress={()=>{
+                ref.current.animateNextTransition()
+                setIsVisible(!isVisible)
+              }}
+            >Contenu de la commande</SelectButton>
+{isVisible &&
+            (<Animated.View style={[styles.container2, rStyle]}>
+              <Elements navigation={navigation} close={close} />
+            </Animated.View>)}
 
             <Line color={COLORS.grayLight} />
             <Space space={20} />
@@ -97,20 +154,44 @@ const Details = ({navigation}) => {
               A ENCAISSER : 79,90 €
             </Txt>
 
-          
             <Form />
-            <Space space={20}/>
+            <Space space={20} />
             <PrimaryButton icon={Select}>Contenu de la commande</PrimaryButton>
 
             <Space space={40} />
           </View>
         </ScrollView>
-      </View>
+      </Transitioning.View>
     </AppLayout>
   );
 };
 
 export default Details;
+
+
+const Elements = ({ navigation, close }) => {
+  return (
+    <View>
+      {ItemList.map((item, index) => {
+        return (
+          <TouchableOpacity
+            key={index}
+            style={styles.Items}
+            onPress={() => {
+              navigation.navigate(item.route);
+              close();
+            }}
+          >
+            <Image source={item.icon} style={{ marginRight: 10 }} />
+            <Txt>{item.nom}</Txt>
+          </TouchableOpacity>
+        );
+      })}
+    </View>
+  );
+};
+
+
 
 const TextRenders = ({ title, item }) => {
   return (
@@ -141,5 +222,15 @@ const styles = StyleSheet.create({
   textdescription: {
     width: "80%",
     lineHeight: 17,
+  },
+  Items: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 15,
+  },
+  container2: {
+    zIndex: 1000,
+    borderRadius: 5,
+    paddingHorizontal: 20,
   },
 });
