@@ -66,6 +66,4 @@ export default function App({ navigation }) {
   
 }
 
-const styles = StyleSheet.create({});
-
-// <Page onLayout={onLayout} />
+ 
