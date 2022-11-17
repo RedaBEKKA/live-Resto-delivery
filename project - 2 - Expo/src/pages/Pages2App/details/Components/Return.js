@@ -4,11 +4,11 @@ import returnImg from "../../../../Assets/img/return.png";
 import address from "../../../../Assets/img/Subtract.png";
 import { Txt } from "../../../../components/utils";
 
-const Return = () => {
+const Return = ({onPress}) => {
   return (
     <View style={styles.container}>
       <View style={styles.row}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onPress}>
           <Image source={returnImg} style={styles.img} />
         </TouchableOpacity>
         <Txt fontSize={14}>Retour aux commandes</Txt>

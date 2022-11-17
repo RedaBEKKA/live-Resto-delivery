@@ -2,7 +2,7 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Txt } from "../../../components/utils";
 import { COLORS } from "../../../theme";
-import HerderDetails from "../../../components/Heders/headerDetails";
+import HeaderDetails from "../../../components/Heders/headerDetails";
 import ReturnToHome from "./Components/Return";
 import Space from "../../../components/Space";
 import Iconer from "../../../components/Iconer";
@@ -13,6 +13,7 @@ import Line from "../../../components/Line";
 
 import calender from "../../../Assets/img/calendar.png";
 import Form from "./Components/Form";
+import HeaderHome from "../../../components/Heders/HeaderHome";
 
 const listTexts = [
   {
@@ -37,10 +38,10 @@ const listTexts = [
   },
 ];
 
-const Details = () => {
+const Details = ({navigation}) => {
   return (
     <View style={{ flex: 1, backgroundColor: COLORS.white }}>
-      <HerderDetails />
+      <HeaderHome />
       <View
         style={{
           borderRadius: 8,
@@ -48,7 +49,9 @@ const Details = () => {
         }}
       >
         <ScrollView showsVerticalScrollIndicator={false}>
-          <ReturnToHome />
+          <ReturnToHome onPress={()=>{
+            navigation.goBack()
+          }}  />
           <Space space={10} />
           <View style={styles.container}>
             <Txt fontSize={24}>#56226</Txt>

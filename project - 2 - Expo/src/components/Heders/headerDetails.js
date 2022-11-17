@@ -13,7 +13,7 @@ import user from "../../Assets/img/user.png";
 import VectorStroke from "../../Assets/img/VectorStroke.png";
 import HView from "../HView/HView";
 import { COLORS } from "../../theme";
-const HerderDetails= () => {
+const HeaderDetails= () => {
   return (
     <View
       style={{ height: 70, paddingHorizontal: 20, justifyContent: "center", backgroundColor:COLORS.grayLight }}
@@ -31,6 +31,6 @@ const HerderDetails= () => {
   );
 };
 
-export default HerderDetails;
+export default HeaderDetails;
 
 const styles = StyleSheet.create({});
