@@ -17,8 +17,8 @@ export function UseLogin() {
   };
 
   const loginValues = {
-    login: "Maxime",
-    password: "123456",
+    login: "yonis",
+    password: "1011",
   };
   const onSuccess = () => {};
 

@@ -11,30 +11,35 @@ import info from "../../../../Assets/img/info.png";
 import Subtract from "../../../../Assets/img/Subtract.png";
 import Timer2 from "../../../../Assets/img/Timer2.png";
 import eys2 from "../../../../Assets/img/eys2.png";
-
+import moment from "moment";
+import "moment/locale/fr";
 import { ButtonRectangle195 } from "../../../../components/Buttons";
 import Space from "../../../../components/Space";
+import { UseTraking } from "../../details/Hooks/useTraking";
 
-const RenderResMessage = ({ navigation }) => {
+const RenderResMessage = ({ navigation, item }) => {
+  const { goToTraking } = UseTraking();
+
+  let user = item?.order?.customer;
+  const dateString = item.order.for_when;
+
+  const date = moment(dateString);
+  const formattedDate = date.format("DD MMMM [à] HH:mm");
+
+
+  const deliveryAddress = JSON.parse(item.order.delivery_address);
 
   return (
     <Cover>
-      <TouchableOpacity
-        style={{ flex: 1, overflow: "hidden" }}
-        onPress={() => {
-          navigation.navigate("Details");
-        }}
-      >
+      <View style={{ flex: 1, overflow: "hidden" }}>
         <View
           style={{
             flexDirection: "row",
-            justifyContent: "space-between",
             position: "absolute",
+            alignItems: "center",
             flex: 1,
             marginLeft: 10,
-            padding: 20,
-            width: "95%",
-            // backgroundColor:"#8F0129"
+            // backgroundColor:COLORS.green30
           }}
         >
           <View style={{ flex: 1 }}>
@@ -43,32 +48,61 @@ const RenderResMessage = ({ navigation }) => {
                 flexDirection: "row",
                 flex: 1,
                 justifyContent: "space-between",
+                // backgroundColor:"#8F012980",
+                marginTop: 20,
+                paddingHorizontal: 16,
               }}
             >
               <Iconer
-                title="Aujourd’hui à 10:20"
+                title={formattedDate}
                 icon={calendar}
                 color={COLORS.green1}
               />
               <View style={{ flexDirection: "row" }}>
-                <Image source={info} style={{ marginRight: 5 }} />
-                <Image source={Subtract} />
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate("Details");
+                  }}
+                >
+                  <Image source={info} style={{ marginRight: 5 }} />
+                </TouchableOpacity>
+                <TouchableOpacity
+                onPress={goToTraking}
+                >
+                  <Image source={Subtract} />
+                </TouchableOpacity>
               </View>
             </View>
             <Space />
-            <Txt fontSize={14}>La Lune de Béjaïa - #56226</Txt>
-            <Txt Bold="700">DE MELO Céline</Txt>
-            <Txt>
-              21 rue du Lieutenant Jean-Baptiste Meschi - 13005 - Marseille
-            </Txt>
-            <Space space={15} />
-            {/* <Iconer
+
+            <TouchableOpacity
+              style={{ paddingHorizontal: 20 }}
+              onPress={() => {
+                navigation.navigate("Details");
+              }}
+            >
+              <Txt fontSize={14}>
+                {item.establishment
+                  ? item.establishment
+                  : "Establishment non disponible"}{" "}
+                - #56226
+              </Txt>
+              <Txt Bold="700">
+                {user.firstname}
+                {user.lastname}{" "}
+              </Txt>
+              <Txt>
+                {deliveryAddress.address} - {deliveryAddress.floor} - {deliveryAddress.city}
+              </Txt>
+              <Space space={15} />
+              {/* <Iconer
               title="En attente de réception"
               icon={Timer}
               color={COLORS.red}
             /> */}
 
-            <Iconer title="Reçue et vue" icon={eys2} color={COLORS.yellow} />
+              <Iconer title="Reçue et vue" icon={eys2} color={COLORS.yellow} />
+            </TouchableOpacity>
             <Space space={10} />
 
             <View
@@ -77,11 +111,11 @@ const RenderResMessage = ({ navigation }) => {
                 zIndex: 100,
                 justifyContent: "space-between",
                 flexDirection: "row",
-                flexWrap:"wrap",
-                gap:5
+                flexWrap: "wrap",
+                gap: 5,
+                paddingHorizontal: 10,
               }}
             >
- 
               <ButtonRectangle195
                 textColor={COLORS.green1}
                 icon={Timer2}
@@ -108,15 +142,16 @@ const RenderResMessage = ({ navigation }) => {
             flex: 1,
             borderRadius: 7,
             overflow: "hidden",
+            zIndex: -1,
           }}
         >
           <Image
             source={back}
-            style={{ width: "100%", height: "95%", marginBottom: 0 }}
+            style={{ width: "100%", height: "100%", marginBottom: 0 }}
             resizeMode="stretch"
           />
         </View>
-      </TouchableOpacity>
+      </View>
     </Cover>
   );
 };

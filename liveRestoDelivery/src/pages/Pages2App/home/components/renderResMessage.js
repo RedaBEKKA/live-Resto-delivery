@@ -8,13 +8,23 @@ import { COLORS, SIZES } from "../../../../theme";
 import { Txt } from "../../../../components/utils";
 import Iconer from "../../../../components/Iconer";
 import { ButtonRectangle195 } from "../../../../components/Buttons";
+import moment from "moment";
+import "moment/locale/fr";
 
-const RenderSendMessage = ({navigation}) => {
+
+const RenderSendMessage = ({navigation,item}) => {
+
+  let user = item?.order?.customer;
+  const dateString = item.order.for_when;
+
+  const date = moment(dateString);
+  const formattedDate = date.format("DD MMMM [à] HH:mm");
+
+
+  const deliveryAddress = JSON.parse(item.order.delivery_address);
   return (
     <Cover>
-      <TouchableOpacity style={{ flex: 1 }}  onPress={()=>{
-        navigation.navigate('Details')
-      }}>
+      <View style={{ flex: 1 }}  >
         <View
           style={{
             flexDirection: "row",
@@ -26,14 +36,25 @@ const RenderSendMessage = ({navigation}) => {
           }}
         >
           <View>
-            <Txt fontSize={14}>La Lune de Béjaïa - #56226</Txt>
-            <Txt Bold="700">DE MELO Céline</Txt>
+            <TouchableOpacity
+            onPress={()=>{
+              navigation.navigate('Details')
+            }}
+            >
+
+            <Txt fontSize={14}>{item.establishment
+                  ? item.establishment
+                  : "Establishment non disponible"}{" "}- #56226</Txt>
+            <Txt Bold="700"> {user.firstname}
+                {user.lastname}{" "}</Txt>
 
             <Txt>
-              21 rue du Lieutenant Jean-Baptiste Meschi - 13005 - Marseille
+            {deliveryAddress.address} - {deliveryAddress.floor} - {deliveryAddress.city}
+
             </Txt>
 
             <Iconer title="En livraison" icon={bike} color={COLORS.green3} />
+            </TouchableOpacity>
 
             <View
               style={{
@@ -61,6 +82,7 @@ const RenderSendMessage = ({navigation}) => {
             flex: 1,
             borderRadius: 7,
             overflow: "hidden",
+            zIndex:-1
           }}
         >
           <Image
@@ -71,7 +93,7 @@ const RenderSendMessage = ({navigation}) => {
         </View>
 
         {/* <Image source={back} style={{ height: 204 }} resizeMode="contain" /> */}
-      </TouchableOpacity>
+      </View>
     </Cover>
   );
 };

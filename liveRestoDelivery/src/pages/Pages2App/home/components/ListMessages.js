@@ -1,7 +1,8 @@
-import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
+import { StyleSheet  } from "react-native";
 import React from "react";
 import RenderResMessage from "./renderResMessage";
 import RenderSendMessage from "./renderSendessage";
+import { useSelector } from "react-redux";
 
 const List = [
   {
@@ -60,25 +61,26 @@ const List = [
   },
 ];
 
-const ListMessages = ({navigation}) => {
-  return (
+const ListMessages = ({ navigation }) => {
+  const { routes } = useSelector((state) => state.routes);
 
-        List.map((item) => {
-          return <ItemsRender key={item.id} item={item} navigation={navigation} />;
-        })
-  );
+  let Lists = routes?.routes;
+
+  return Lists?.map((item) => {
+    return <ItemsRender key={item.id} item={item} navigation={navigation} />;
+  });
 };
 
 export default ListMessages;
 
-const ItemsRender = ({ item ,navigation}) => {
-  let sender = item.sender;
+const ItemsRender = ({ item, navigation }) => {
+  let sender = item.take;
 
   if (sender) {
     return <RenderSendMessage item={item} navigation={navigation} />;
   }
   if (!sender) {
-    return !sender && <RenderResMessage item={item} navigation={navigation}  />;
+    return !sender && <RenderResMessage item={item} navigation={navigation} />;
   }
 
   return null;
@@ -89,3 +91,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#ccc",
   },
 });
+
+

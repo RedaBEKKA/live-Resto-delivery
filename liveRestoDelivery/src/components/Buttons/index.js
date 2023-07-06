@@ -95,15 +95,13 @@ export const ButtonRectangle195 = ({
   icon,
   right,
 }) => {
-  const hoverRef = useRef(null);
   return (
     <TouchableOpacity
-      ref={hoverRef}
       onPress={onPress}
-      style={[
+      style={
         {
           width: width || "auto",
-          backgroundColor: "#FFF",
+           backgroundColor: "#FFF",
           borderRadius: 20,
           alignItems: "center",
           paddingVertical: 4,
@@ -111,10 +109,11 @@ export const ButtonRectangle195 = ({
           justifyContent: "space-between",
           paddingHorizontal: 10,
           marginRight: right ? right : 0,
-        },
+          zIndex:100
+        }
 
-        { ...style },
-      ]}
+      }
+      { ...style }
     >
       <Image source={icon} style={{ marginRight: 4 }} />
 
@@ -303,11 +302,5 @@ const styles = StyleSheet.create({
     // fontSize: 17,
     // letterSpacing: 15,
   },
-  PaleGreyButton: {
-    height: 51,
-    borderRadius: 5,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: COLORS.paleGrey,
-  },
+ 
 });
