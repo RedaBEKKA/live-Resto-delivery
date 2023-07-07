@@ -38,7 +38,9 @@ const RenderSendMessage = ({navigation,item}) => {
           <View>
             <TouchableOpacity
             onPress={()=>{
-              navigation.navigate('Details')
+       
+              navigation.navigate("Details",{id:item.id});
+
             }}
             >
 

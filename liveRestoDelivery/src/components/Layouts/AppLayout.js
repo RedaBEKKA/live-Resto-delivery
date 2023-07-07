@@ -39,6 +39,8 @@ const AppLayout = ({ navigation, children, loading, noScroll,onRefresh,data }) =
               marginHorizontal: noScroll ? 0 : 20,
               borderRadius: 8,
               flex: 1,
+              marginBottom:noScroll ? 0 :20,
+              overflow:"hidden"
             }}
           >
             {noScroll ? (

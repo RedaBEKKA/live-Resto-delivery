@@ -1,34 +1,35 @@
 import { fr } from "yup-locales";
 import { setLocale } from "yup";
 import { useDispatch } from "react-redux";
-import { getDeliveryInfoId } from "../../../../Redux/Features/Screens/Home/Slice";
+import { getDeliveryInfoId } from "../../../../Redux/Features/Screens/DeliveryDetails/Slice";
 
 setLocale(fr);
 
 export function UseDeliveryId() {
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch();
+  const onSuccess = () => {};
 
-    const onSuccess = () => {};
+  const onError = (error) => {
+    console.log("error", error);
+    // toastRef.current.showToast(error);
+  };
+  const onErrorAction = () => {};
 
-    const onError = (error) => {
-      console.log("error", error);
-      // toastRef.current.showToast(error);
+  const onGetRoutes = async (values) => {
+    console.log("values", values);
+
+    let object = {
+      onSuccess,
+      onError,
+      onErrorAction,
+      id: values,
     };
-    const onErrorAction = () => {};
-  
-    const onGetRoutes = async (values) => {
-      let object = {
-        onSuccess,
-        onError,
-        onErrorAction,
-        values,
-      };
-      dispatch(getDeliveryInfoId(object));
-    };
+    dispatch(getDeliveryInfoId(object));
+  };
 
   return {
-    goToTraking,
+    onGetRoutes,
     onSuccess,
     onError,
     onErrorAction,

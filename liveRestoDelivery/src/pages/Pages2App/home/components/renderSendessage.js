@@ -26,7 +26,6 @@ const RenderResMessage = ({ navigation, item }) => {
   const date = moment(dateString);
   const formattedDate = date.format("DD MMMM [à] HH:mm");
 
-
   const deliveryAddress = JSON.parse(item.order.delivery_address);
 
   return (
@@ -61,14 +60,13 @@ const RenderResMessage = ({ navigation, item }) => {
               <View style={{ flexDirection: "row" }}>
                 <TouchableOpacity
                   onPress={() => {
-                    navigation.navigate("Details");
+                    //
+                    navigation.navigate("Details", { id: item.id });
                   }}
                 >
                   <Image source={info} style={{ marginRight: 5 }} />
                 </TouchableOpacity>
-                <TouchableOpacity
-                onPress={goToTraking}
-                >
+                <TouchableOpacity onPress={goToTraking}>
                   <Image source={Subtract} />
                 </TouchableOpacity>
               </View>
@@ -78,7 +76,7 @@ const RenderResMessage = ({ navigation, item }) => {
             <TouchableOpacity
               style={{ paddingHorizontal: 20 }}
               onPress={() => {
-                navigation.navigate("Details");
+                navigation.navigate("Details", { id: item.id });
               }}
             >
               <Txt fontSize={14}>
@@ -92,7 +90,8 @@ const RenderResMessage = ({ navigation, item }) => {
                 {user.lastname}{" "}
               </Txt>
               <Txt>
-                {deliveryAddress.address} - {deliveryAddress.floor} - {deliveryAddress.city}
+                {deliveryAddress.address} - {deliveryAddress.floor} -{" "}
+                {deliveryAddress.city}
               </Txt>
               <Space space={15} />
               {/* <Iconer

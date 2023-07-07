@@ -9,8 +9,8 @@ const api = async (id,token) => {
       Authorization: `Bearer ${token}`,
     },
   };
-
-  const res = await axios.get(`${API_URL_DEV}/order/${id}`,config);
+let urll = `${API_URL_DEV}/orders/${id}`
+  const res = await axios.get(`${API_URL_DEV}/orders/${id}`,config);
   return res;
 };
 const profileService = {

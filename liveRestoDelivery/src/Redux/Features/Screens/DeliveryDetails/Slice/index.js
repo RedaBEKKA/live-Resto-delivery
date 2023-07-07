@@ -4,13 +4,12 @@ import profileService from "../Service";
 export const getDeliveryInfoId = createAsyncThunk(
   "details/info",
   async (object, thunkAPI) => {
-    let { onSuccess, onErrorAction, onError,id } = object;
+    let { id } = object;
+
     try {
-       const token = thunkAPI.getState().auth.token;
+      const token = thunkAPI.getState().auth.token;
 
-
-      let res = await profileService.api(id,token);
-   
+      let res = await profileService.api(id, token);
 
       return res.data;
     } catch (error) {
@@ -19,15 +18,17 @@ export const getDeliveryInfoId = createAsyncThunk(
         error.message ||
         error.toString();
       console.log("message", message);
-      alert(message.message?message.message:message);
+      alert(message.message ? message.message : message);
 
       return thunkAPI.rejectWithValue(message);
     }
   }
-); 
+);
+
+
  
 
-const routesSlice = createSlice({
+const DetailsSlice = createSlice({
   name: "details",
   initialState: {
     result: null,
@@ -66,5 +67,8 @@ const routesSlice = createSlice({
   },
 });
 
-export const { handleEditInfo } = routesSlice.actions;
-export default routesSlice.reducer;
+export const { handleEditInfo } = DetailsSlice.actions;
+export default DetailsSlice.reducer;
+
+
+ 

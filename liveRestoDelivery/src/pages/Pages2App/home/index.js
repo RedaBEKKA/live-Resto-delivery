@@ -9,6 +9,7 @@ import AppLayout from "../../../components/Layouts/AppLayout";
 const Home = ({ navigation }) => {
   const { onGetRoutes } = UseHome();
 
+ 
   useEffect(() => {
     onGetRoutes();
   }, []);
